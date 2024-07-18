@@ -1,5 +1,5 @@
 import React from 'react'
-import AboutImg from '../../assets/police_image/about_lil.jpeg';
+import AboutImg from '../../assets/police_image/img2.jpeg';
 
 function About() {
     return (
@@ -31,28 +31,28 @@ function About() {
 
                         >
                             
-                            <h2 className=" text-2xl">Us</h2>
+                            <h2 className=" text-2xl text-slate-500">Who we are</h2>
                             <p className="text-sm  dark:text-slate-400">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Ad distinctio dignissimos ea eum, tenetur id ullam ex doloremque enim,
-                                aspernatur vitae quam modi sequi velit libero nemo maiores in voluptatum.
+                                The Rwanda Investigation Bureau (RIB) is a specialized organ established 
+                                by the law Nº12/2017 of 07/04/2017 and responsible for performing career 
+                                investigative functions, and partners with other law enforcement agencies
+                                 in ensuring law and order.
                             </p>
                             <div>
-                                <h2 className=" text-2xl">Vision</h2>
+                                <h2 className=" text-2xl text-slate-500">Vision</h2>
                                 <p className="text-sm  dark:text-slate-400">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Ad distinctio dignissimos ea eum, tenetur id ullam ex doloremque enim,
-                                    aspernatur vitae quam modi sequi velit libero nemo maiores in voluptatum.
+                                    Professional Investigative Institution that upholds Rule of Law
+                                     and Human Rights towards a Crime-free Nation
                                 </p>
                             </div>
                             <div>
 
 
-                                <h2 className=" text-2xl">Mission</h2>
+                                <h2 className=" text-2xl text-slate-500">Mission</h2>
                                 <p className="text-sm  dark:text-slate-400">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Ad distinctio dignissimos ea eum, tenetur id ullam ex doloremque enim,
-                                    aspernatur vitae quam modi sequi velit libero nemo maiores in voluptatum.
+                                    To prevent, detect, investigate and respond to current
+                                     and emerging crime threats through the use of modern technology
+                                      and building partnership in order to uphold the rule of law.
                                 </p>
                             </div>
                             

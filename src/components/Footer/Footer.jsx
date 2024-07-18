@@ -57,16 +57,16 @@ const ResourcesLinks = [
 ];
 const Footer = () => {
   return (
-    <div className="bg-dark text-white">
+    <div className="bg-slate-600 text-dark">
       <section className="container py-10">
         <div className=" grid md:grid-cols-3 py-5">
           {/* company Details */}
           <div className=" py-8 px-4 ">
             <h1 className="sm:text-3xl text-xl font-bold sm:text-left text-justify mb-3 flex items-center gap-3">
-              Policy Management System
+              Healthy Insurance Fraud Detection System
             </h1>
             <p className="text-sm">
-              Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
+              dolor sit amet
               consectetur adipisicing elit consectetur adipisicing elit ipsum
               dolor sit amet consectetur. adipisicing{" "}
             </p>

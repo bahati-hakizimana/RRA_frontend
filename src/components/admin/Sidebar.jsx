@@ -3,13 +3,13 @@ import { FaUsers, FaRegFilePdf, FaFileExcel } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 import { BiSolidInstitution } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/police_image/logo_lil.jpeg';
+// import Logo from '../../assets/police_image/logo_lil.jpeg';
+import Logo from '../../assets/police_image/nyirinkwayaLogo.jpeg';
 import { IoIosArrowDown, IoIosArrowForward } from 'react-icons/io';
-import { FaSchool } from "react-icons/fa";
-import { FaUniversity } from "react-icons/fa";
-import { MdOutlinePolicy } from "react-icons/md";
 import { FcDepartment } from "react-icons/fc";
 import { FaCommentDots } from "react-icons/fa";
+import { FaUserNurse } from "react-icons/fa";
+import { FaUserTie } from "react-icons/fa";
 
 function Sidebar() {
   const [activeLink, setActiveLink] = useState(null);
@@ -29,17 +29,11 @@ function Sidebar() {
     { id: 2, name: 'Users', path: '/admin/users', icon: <FaUsers /> },
     {
       id: 3, 
-      name: 'Institution',
-      path:"/admin/instutitions", 
+      name: 'Reports',
+      path:"/admin/reports", 
       icon: <BiSolidInstitution />,
     },
-    
-    { id: 4, name: 'Departments', path: '/admin/departiments', icon: <FcDepartment />
-    
-    },
-    { id: 5, name: 'Policies', path: '/admin/policies', icon: <MdOutlinePolicy /> },
-    { id: 6, name: 'Coments', path: '/admin/coments', icon: <FaCommentDots /> },
-    // { id: 7, name: 'Excel', path: '/admin/excel', icon: <FaFileExcel /> },
+  
   ];
 
   return (
@@ -82,11 +76,11 @@ function Sidebar() {
         </li>
       ))}
     </ul>
-    <div className='w-full absolute bottom-5 left-0 px-4 py-4 text-center cursor-pointer'>
+    {/* <div className='w-full absolute bottom-5 left-0 px-4 py-4 text-center cursor-pointer'>
       <p className='flex space-x-2 text-xs text-white py-2 px-5 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-full'>
         <span>?</span><span>Need help</span>
       </p>
-    </div>
+    </div> */}
   </div>
   );
 }
