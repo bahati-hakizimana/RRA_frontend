@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 const DipartmentReport = () => {
   const [reports, setReports] = useState([]);
@@ -32,6 +31,36 @@ const DipartmentReport = () => {
     }
   };
 
+  const handleDownload = async () => {
+    try {
+      const userData = JSON.parse(sessionStorage.getItem('userData'));
+      const accessToken = userData?.accessToken;
+
+      if (!accessToken) {
+        console.error("No access token found");
+        return;
+      }
+
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/pdf',
+        },
+        responseType: 'blob' // Important to specify response type as blob for binary data
+      };
+
+      const res = await axios.get('http://127.0.0.1:8000/report/download/all/pdf/', config);
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'report.pdf'); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+    } catch (err) {
+      console.error("Error downloading report", err);
+    }
+  };
+
   useEffect(() => {
     fetchReports();
   }, []);
@@ -39,9 +68,6 @@ const DipartmentReport = () => {
   return (
     <div>
       <h1 className="text-center text-black text-xl capitalize mb-4">Reports</h1>
-      <div className=' flex justify-end mb-4'>
-      <Link to="/departement/createreport" className=' px-4 py-1 rounded-lg bg-black text-white'>Create report</Link>
-      </div>
       
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -72,6 +98,15 @@ const DipartmentReport = () => {
             )}
           </tbody>
         </table>
+      </div>
+
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handleDownload}
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        >
+          Download Report
+        </button>
       </div>
     </div>
   );

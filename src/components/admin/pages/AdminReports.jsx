@@ -32,6 +32,59 @@ const AdminReports = () => {
     }
   };
 
+  const handleDownload = async () => {
+    try {
+      const userData = JSON.parse(sessionStorage.getItem('userData'));
+      const accessToken = userData?.accessToken;
+
+      if (!accessToken) {
+        console.error("No access token found");
+        return;
+      }
+
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/pdf',
+        },
+        responseType: 'blob' // Important to specify response type as blob for binary data
+      };
+
+      const res = await axios.get('http://127.0.0.1:8000/report/download/all/pdf/', config);
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'report.pdf'); // or any other extension
+      document.body.appendChild(link);
+      link.click();
+    } catch (err) {
+      console.error("Error downloading report", err);
+    }
+  };
+
+  const handleDelete = async (reportId) => {
+    try {
+      const userData = JSON.parse(sessionStorage.getItem('userData'));
+      const accessToken = userData?.accessToken;
+
+      if (!accessToken) {
+        console.error("No access token found");
+        return;
+      }
+
+      const config = {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        }
+      };
+
+      await axios.delete(`http://127.0.0.1:8000/report/delete/${reportId}/`, config);
+      setReports(reports.filter(report => report.id !== reportId));
+    } catch (err) {
+      console.error("Error deleting report", err);
+    }
+  };
+
   useEffect(() => {
     fetchReports();
   }, []);
@@ -48,6 +101,7 @@ const AdminReports = () => {
               <th scope="col" className="px-6 py-3">Description</th>
               <th scope="col" className="px-6 py-3">Level</th>
               <th scope="col" className="px-6 py-3">Created Date</th>
+              <th scope="col" className="px-6 py-3">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -60,15 +114,33 @@ const AdminReports = () => {
                   <td className="px-6 py-4">{report.description}</td>
                   <td className="px-6 py-4">{report.level}</td>
                   <td className="px-6 py-4">{new Date(report.created_date).toLocaleString()}</td>
+                  <td className="px-6 py-4">
+                    <Link to={`/admin/viewreport/${report.id}`} className=' px-4 py-2'>View Report</Link>
+                    <button
+                      onClick={() => handleDelete(report.id)}
+                      className="px-2 py-2 ml-2 rounded-xl bg-red-500 text-white"
+                    >
+                      Delete
+                    </button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="px-6 py-4 text-center">No reports found</td>
+                <td colSpan="5" className="px-6 py-4 text-center">No reports found</td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handleDownload}
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
+        >
+          Download Report
+        </button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -11,6 +11,39 @@ function UpdateUser() {
     email: '',
     phone: ''
   });
+
+  useEffect(() => {
+    // Retrieve access token from session storage
+    const userDataFromSession = JSON.parse(sessionStorage.getItem('userData'));
+    const accessToken = userDataFromSession?.accessToken;
+
+    if (!accessToken) {
+      console.error("No access token found");
+      return;
+    }
+
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    };
+
+    // Fetch user data by ID
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get(`http://127.0.0.1:8000/user/${id}/`, config);
+        if (res.data) {
+          setUserData(res.data);
+        } else {
+          console.log("Error fetching user data");
+        }
+      } catch (err) {
+        console.error("Error fetching user data", err);
+      }
+    };
+
+    fetchUser();
+  }, [id]);
 
   const handleChange = (e) => {
     setUserData({

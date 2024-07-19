@@ -26,8 +26,9 @@ function Sidebar() {
 
   const Sidebar_Links = [
     { id: 1, name: 'Dashboard', path: '/division', icon: <MdDashboard /> },
+    { id: 2, name: 'Users', path: '/division/all_users', icon: <FaUsers /> },
     {
-      id: 2, 
+      id: 3, 
       name: 'Reports',
       path:"/division/divisionreport", 
       icon: <BiSolidInstitution />,

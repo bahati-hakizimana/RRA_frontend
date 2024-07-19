@@ -39,6 +39,11 @@ import Division_Layout from "./components/headofdivision/division_User_Layout.js
 import CreateDivisionReport from "./components/headofdivision/pages/CreateDivisionReport.jsx";
 import DivisionReport from "./components/headofdivision/pages/DivisionReport.jsx";
 import UpdateUser from "./components/admin/pages/UpdateUser.jsx";
+import Users_All from "./components/headofdepartment/pages/Users_all.jsx";
+import AddUser from "./components/headofdepartment/pages/AddUser.jsx";
+import AllUsers from "./components/headofdivision/pages/AllUsers.jsx";
+import Add_User from "./components/headofdivision/pages/Add_User.jsx";
+import GetReport from "./components/admin/pages/GetReport.jsx";
 
 
 const App = () => {
@@ -77,6 +82,7 @@ const App = () => {
             <Route path="/admin/reports" element={<AdminReports />} />
             <Route path="/admin/createuser" element={<CreateUser />} />
             <Route path="/admin/edituser/:id" element={<UpdateUser />} />
+            <Route path="/admin/viewreport/:id" element={<GetReport />} />
       
             </Route>
 
@@ -86,15 +92,21 @@ const App = () => {
             <Route path="/unityuser/reports" element={<UnityReport />} />
             <Route path="/unityuser/createreport" element={<CreateUnityReport />} />
             </Route>
-            {/* User */}
+            {/* Dptment */}
              <Route path="/departement" element={<Dipartiment_Layout />}>
              <Route path="/departement/report" element={<DipartmentReport />} />
              <Route path="/departement/createreport" element={<CreateDipartimentReport  />} />
+             <Route path="/departement/allusers" element={<Users_All />} />
+             <Route path="/departement/adduser" element={<AddUser />} />
              </Route>
+
+             {/* dvsion */}
 
              <Route path="/division" element={<Division_Layout />}>
              <Route path="/division/createreport" element={<CreateDivisionReport />} />
              <Route path="/division/divisionreport" element={<DivisionReport />} />
+             <Route path="/division/all_users" element={<AllUsers />} />
+             <Route path="/division/add_user" element={<Add_User />} />
              </Route>
         </Routes>
       </BrowserRouter>
